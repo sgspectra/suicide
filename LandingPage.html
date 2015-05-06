@@ -2,27 +2,20 @@
 
 <!DOCTYPE html>
 <br>
-< lang="en">
+<head lang="en">
   <script src="//plus.google.com/hangouts/_/api/dev/hangout.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="/LandingPage.js"></script>
-    <meta charset="UTF-8">
-    <title>Suicide: The Drinking Game</title>
+  <meta charset="UTF-8">
+  <title>Suicide: The Drinking Game</title>
 </head>
 
-<h2 id="header">
-  Suicide: The Drinking Game
-</h2>
-<h3>
-  Pregame Setup
-</h3>
-<h3>
-  Users in this hangout:
-</h3>
-
+<h2 id="header">Suicide: The Drinking Game</h2>
+<h3>Pregame Setup</h3>
+<h3>Users in this hangout:</h3>
 <p id ="players"></p>
 <button id="addPlayer">Add Player</button>
-<form class="addPlayerForm" onsubmit="addToParticipantArray(this)">
+<form class="addPlayerForm" onsubmit="addToParticipantArray(this); return false;">
   Player Name:
   <input type="text" id="formField1" name="playername">
   </br>

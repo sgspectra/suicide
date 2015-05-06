@@ -30,11 +30,19 @@
     });
   });
 
-//Adding Player to participants array
+//Adding Player to participants array after new player form is submitted.
   function addToParticipantArray(form){
     participants[participants.length] = form.playername.value;
     $(document).ready(function(){
+      $("#players").append(form.playername.value + "</br>");
       $("#formField1").val("");
     });
   }
+
+/**
+ * When we move to actual gameplay, the participant array needs to be passed through to the next page somehow.
+ *
+ * Design as 1 page that hides major parts when gameplay starts or 2 pages (landing and gameplay).
+ */
+
 
