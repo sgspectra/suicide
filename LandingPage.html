@@ -1,9 +1,11 @@
 <!-- Basic template for elements that will be included in Landing Page -->
 
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<br>
+< lang="en">
   <script src="//plus.google.com/hangouts/_/api/dev/hangout.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/LandingPage.js"></script>
     <meta charset="UTF-8">
     <title>Suicide: The Drinking Game</title>
 </head>
@@ -18,9 +20,14 @@
   Users in this hangout:
 </h3>
 
-<p id ="users">
-
-</p>
+<p id ="players"></p>
+<button id="addPlayer">Add Player</button>
+<form class="addPlayerForm">
+  Player Name:
+  <input type="text" name="playername">
+  </br>
+  <input type="submit" name="submit">
+</form>
 
 </body>
 </html>

@@ -5,15 +5,27 @@
  */
 
 
-//Load the users in the Hangout into a list displaying their names on html page.
+//Hide Elements that are optional or accessed later.
+  $(document).ready(function(){
+    $("#addPlayerForm").hide();
+  });
 
-var users = "";
-var participants = gapi.hangout.getParticipants();
-var i = 0;
-while (participants[i]){
-  users += (participants[i] + "</br>");
-  i++;
-}
-$(document).ready(function(){
-  $("#users").append(users);
-});
+
+//Load the users in the Hangout into a list displaying their names on html page.
+  var users = "";
+  var participants = gapi.hangout.getParticipants();
+  var i = 0;
+  while (participants[i]){
+    users += (participants[i] + "</br>");
+    i++;
+  }
+  $(document).ready(function(){
+    $("#players").append(users);
+  });
+
+//Accessing the Add Player Form
+  $(document).ready(function(){
+    $("#addPlayer").click(function(){
+      $("#addPlayerForm").show();
+    })
+  })
