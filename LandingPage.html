@@ -15,7 +15,7 @@
 <h3 class="pregame">Pregame Setup</h3>
 <h3 class="pregame">Users in this hangout:</h3>
 <p id ="players" class="pregame"></p>
-<button id="addPlayer" class="pregame">Add Player</button>
+<button type="button" id="addPlayer" class="pregame">Add Player</button>
 <form id="addPlayerForm" class="pregame" onsubmit="addToParticipantArray(this); return false;">
   Player Name:
   <input type="text" id="formField1" name="playername">
@@ -23,9 +23,22 @@
   <input type="submit" name="submit">
 </form>
 
-<button id="startButton" class="pregame">Start Game</button>
+<button id="startButton" class="pregame" onclick="startGame();">Start Game</button>
 
 <!-- No class="pregame" below this comment -->
+
+<div id="gameHeader" class="ingame">
+    <h2>Suicide: The Drinking Game</h2>
+    <div id="playersInGame" class="ingame">
+        <!-- Portrait or Name of Players in the game-->
+    </div>
+</div>
+<div id="whosTurn" class="ingame">
+    <!-- Display whos turn it is -->
+</div>
+<div id="tabletop" class="ingame">
+    <!-- game interface -->
+</div>
 
 </body>
 </html>

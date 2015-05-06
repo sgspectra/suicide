@@ -8,12 +8,14 @@
 //Hide Elements that are optional or accessed later.
   $(document).ready(function(){
     $("#addPlayerForm").hide();
+    $(".ingame").hide();
   });
 
 
 //Load the users in the Hangout into a list displaying their names on html page.
   var users = "";
-  var participants = gapi.hangout.getParticipants();
+  //var participants = gapi.hangout.getParticipants();
+  var participants = ["blah"];
   var i = 0;
   while (participants[i]){
     users += (participants[i] + "</br>");
@@ -44,5 +46,13 @@
  *
  * Design as 1 page that hides major parts when gameplay starts or 2 pages (landing and gameplay).
  */
+
+//Start game button function
+function startGame(){
+    $(document).ready(function(){
+        $(".pregame").hide();
+        $(".ingame").show();
+    });
+}
 
 
