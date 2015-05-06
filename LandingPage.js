@@ -27,5 +27,14 @@
   $(document).ready(function(){
     $("#addPlayer").click(function(){
       $("#addPlayerForm").show();
-    })
-  })
+    });
+  });
+
+//Adding Player to participants array
+  function addToParticipantArray(form){
+    participants[participants.length] = form.playername.value;
+    $(document).ready(function(){
+      $("#formField1").val("");
+    });
+  }
+
