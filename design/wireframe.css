@@ -4,6 +4,10 @@ body{
 div{
 	border-style:solid;
 }
+p{
+	padding:auto;
+	margin:0px;
+}
 #header{
 	margin:10px auto 10px auto;
 	border-width:2px;
@@ -39,6 +43,17 @@ div{
 	width:60px;
 	margin:10px 25px 10px 25px;
 	display:inline-block;
+}
+#ctable{
+	border-width:1px;
+	empty-cells:show;
+	display:inline-block;
+}
+td{
+	padding:10px 10px 10px 10px;
+	border-width:1px;
+	border-style:solid;
+	height:100px;
 }
 .card{
 	height:60px;
