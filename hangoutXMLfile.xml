@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Module>
+  <ModulePrefs title="Suicide: The Drinking Game">
+    <Require feature="rpc"/>
+  </ModulePrefs>
+  <Content type="html">
+    <![CDATA[
+
+
+      /* HTML GOES HERE */
+
+
+    ]]>
+  </Content>
+</Module>
