@@ -14,17 +14,21 @@ Install the other dependencies
     sudo npm install
 
 ## Building
+Clean the dist directory
+
+    gulp clean
+    
 Compile all resources into dist/hangout.xml
 
     gulp compile
     
 Lint the gulpfile
 
-    gulp lint-gulpfile
+    gulp lint:gulpfile
     
 Lint the lib directory
 
-    gulp lint-lib
+    gulp lint:lib
     
 Run all lint tasks
 
