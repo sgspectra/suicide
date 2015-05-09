@@ -1,18 +1,25 @@
 // Dependencies
+var del = require('del');
 var gulp = require('gulp');
 var inject = require('gulp-inject');
 var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
 
 /**
- * Compiles the final hangout.xml file to dist
+ * Cleans dist
  */
-gulp.task('compile', function(){
-    var builder = require('xmlbuilder');
-    var fs = require('fs');
+gulp.task('clean', function(){
+    del([
+        'dist/*',
+        '!dist/.gitignore'
+    ]);
+});
 
-    // Inject the script directly into index.html file
-    gulp.src('./lib/index.html')
+/**
+ * Injects the lib/js/script.js into lib/index.html and writes to dist/index.html
+ */
+gulp.task('inject', function(){
+    return gulp.src('./lib/index.html')
         .pipe(inject(gulp.src(['./lib/js/script.js']), {
             starttag: '<!-- inject:js -->',
             transform: function (filePath, file) {
@@ -20,6 +27,14 @@ gulp.task('compile', function(){
             }
         }))
         .pipe(gulp.dest('./dist'));
+});
+
+/**
+ * Compiles the final hangout.xml file to dist by creating file and injecting dist/index.html
+ */
+gulp.task('compile', ['inject'], function(){
+    var builder = require('xmlbuilder');
+    var fs = require('fs');
 
     // Read the script file
     fs.readFile(__dirname + '/dist/index.html', 'utf-8', function(err, data){
@@ -78,7 +93,7 @@ gulp.task('compile', function(){
 /**
  * Lints the gulpfile
  */
-gulp.task('lint-gulpfile', function(){
+gulp.task('lint:gulpfile', function(){
     return gulp.src('./gulpfile.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
@@ -88,7 +103,7 @@ gulp.task('lint-gulpfile', function(){
 /**
  * Lints all js in the lib/js dir
  */
-gulp.task('lint-lib', function(){
+gulp.task('lint:lib', function(){
     return gulp.src('./lib/js/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
@@ -98,11 +113,11 @@ gulp.task('lint-lib', function(){
 /**
  * Task to run all lint subtasks
  */
-gulp.task('lint', ['lint-gulpfile', 'lint-lib']);
+gulp.task('lint', ['lint:gulpfile', 'lint:lib']);
 
 /**
  * Default gulp task
  */
 gulp.task('default', function() {
-    runSequence('lint', 'compile');
+    runSequence('clean', 'lint', 'compile');
 });
