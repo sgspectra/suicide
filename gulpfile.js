@@ -1,5 +1,6 @@
 // Dependencies
 var gulp = require('gulp');
+var jshint = require('gulp-jshint');
 
 /**
  * Compiles the final hangout.xml file to dist
@@ -10,7 +11,9 @@ gulp.task('compile', function(){
 
     // Read the script file
     fs.readFile(__dirname + '/lib/index.html', 'utf-8', function(err, data){
-        if (err) return console.log(err);
+        if (err) {
+            return console.log(err);
+        }
 
         // Create root XML node
         var root = builder.create('root',
@@ -55,11 +58,23 @@ gulp.task('compile', function(){
 
         // Write compiled file to dist
         fs.writeFile(__dirname + '/dist/hangout.xml', xml, function(err){
-            if (err) return console.log(err);
+            if (err) {
+                return console.log(err);
+            }
         });
     });
 });
 
-gulp.task('default', function(){
-    // place code for your default task here
+/**
+ * Lints the gulpfile
+ */
+gulp.task('lint-gulpfile', function(){
+    return gulp.src('./gulpfile.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
+
+/**
+ * Default gulp task
+ */
+gulp.task('default', ['lint-gulpfile', 'compile']);
