@@ -17,3 +17,11 @@ Install the other dependencies
 Compile all resources into dist/hangout.xml
 
     gulp compile
+    
+Lint the gulpfile
+
+    gulp lint-gulpfile
+    
+Run all build tasks
+
+    gulp
