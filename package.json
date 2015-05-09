@@ -1,0 +1,24 @@
+{
+  "name": "suicide",
+  "description": "Suicide: Google+ Hangout Drinking Game",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Andrew Storch",
+    "email": "astorch13@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Miles Oldenburg",
+      "email": "milesoldenburg@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/sgspectra/suicide.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "jshint": "~2.6.3"
+  }
+}

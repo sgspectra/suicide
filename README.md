@@ -1,4 +1,10 @@
 # suicide
-Google+ Hangout Drinking App
+Google+ Hangout Drinking Card Game
 
-JS and CSS files will be stored on ajstorch.com and accessed that way.
+## Configuration
+Google+ Hangout configuration file located at [http://ajstorch.com/suicide-hangout/hangoutXMLfile.xml](http://ajstorch.com/suicide-hangout/hangoutXMLfile.xml).
+
+## Dependencies
+Install dependencies
+
+    sudo npm install
