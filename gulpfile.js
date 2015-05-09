@@ -16,7 +16,7 @@ gulp.task('compile', function(){
         .pipe(inject(gulp.src(['./lib/js/script.js']), {
             starttag: '<!-- inject:js -->',
             transform: function (filePath, file) {
-                return file.contents.toString('utf8');
+                return '<script type="text/javascript">' + file.contents.toString('utf8') + '</script>';
             }
         }))
         .pipe(gulp.dest('./dist'));
