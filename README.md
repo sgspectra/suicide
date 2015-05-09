@@ -22,6 +22,14 @@ Lint the gulpfile
 
     gulp lint-gulpfile
     
+Lint the lib directory
+
+    gulp lint-lib
+    
+Run all lint tasks
+
+    gulp lint
+    
 Run all build tasks
 
     gulp

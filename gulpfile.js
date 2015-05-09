@@ -1,6 +1,7 @@
 // Dependencies
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
+var runSequence = require('run-sequence');
 
 /**
  * Compiles the final hangout.xml file to dist
@@ -71,10 +72,28 @@ gulp.task('compile', function(){
 gulp.task('lint-gulpfile', function(){
     return gulp.src('./gulpfile.js')
         .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+        .pipe(jshint.reporter('default'))
+        .pipe(jshint.reporter('fail'));
 });
+
+/**
+ * Lints all js in the lib/js dir
+ */
+gulp.task('lint-lib', function(){
+    return gulp.src('./lib/js/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
+        .pipe(jshint.reporter('fail'));
+});
+
+/**
+ * Task to run all lint subtasks
+ */
+gulp.task('lint', ['lint-gulpfile', 'lint-lib']);
 
 /**
  * Default gulp task
  */
-gulp.task('default', ['lint-gulpfile', 'compile']);
+gulp.task('default', function() {
+    runSequence('lint', 'compile');
+});
