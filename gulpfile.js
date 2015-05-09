@@ -1,5 +1,6 @@
 // Dependencies
 var gulp = require('gulp');
+var inject = require('gulp-inject');
 var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
 
@@ -10,14 +11,24 @@ gulp.task('compile', function(){
     var builder = require('xmlbuilder');
     var fs = require('fs');
 
+    // Inject the script directly into index.html file
+    gulp.src('./lib/index.html')
+        .pipe(inject(gulp.src(['./lib/js/script.js']), {
+            starttag: '<!-- inject:js -->',
+            transform: function (filePath, file) {
+                return file.contents.toString('utf8');
+            }
+        }))
+        .pipe(gulp.dest('./dist'));
+
     // Read the script file
-    fs.readFile(__dirname + '/lib/index.html', 'utf-8', function(err, data){
+    fs.readFile(__dirname + '/dist/index.html', 'utf-8', function(err, data){
         if (err) {
             return console.log(err);
         }
 
         // Create root XML node
-        var root = builder.create('root',
+        var root = builder.create('Module',
             {
                 version: '1.0',
                 encoding: 'UTF-8'
@@ -26,31 +37,29 @@ gulp.task('compile', function(){
 
         // Populate XML file with the contents of the script file
         root.ele({
-            'Module': {
-                'ModulePrefs': {
-                    '@title': 'Suicide: The Drinking Game',
-                    '#list': [
-                        {
-                            'Require' : {
-                                '@feature': 'rpc'
-                            }
-                        },
-                        {
-                            'Require' : {
-                                '@feature': 'views'
-                            }
-                        },
-                        {
-                            'Require' : {
-                                '@feature': 'locked-domain'
-                            }
+            'ModulePrefs': {
+                '@title': 'Suicide: The Drinking Game',
+                '#list': [
+                    {
+                        'Require' : {
+                            '@feature': 'rpc'
                         }
-                    ]
-                },
-                'Content': {
-                    '@type' : 'html',
-                    '#cdata' : data
-                }
+                    },
+                    {
+                        'Require' : {
+                            '@feature': 'views'
+                        }
+                    },
+                    {
+                        'Require' : {
+                            '@feature': 'locked-domain'
+                        }
+                    }
+                ]
+            },
+            'Content': {
+                '@type' : 'html',
+                '#cdata' : data
             }
         });
 

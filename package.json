@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-inject": "^1.2.0",
     "gulp-jshint": "^1.10.0",
     "run-sequence": "^1.1.0",
     "xmlbuilder": "^2.6.2"

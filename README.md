@@ -2,7 +2,7 @@
 Google+ Hangout Drinking Card Game
 
 ## Configuration
-Google+ Hangout configuration file located at [http://ajstorch.com/suicide-hangout/hangoutXMLfile.xml](http://ajstorch.com/suicide-hangout/hangoutXMLfile.xml).
+Google+ Hangout configuration file located at [http://ajstorch.com/suicide-hangout/hangout.xml](http://ajstorch.com/suicide-hangout/hangout.xml).
 
 ## Dependencies
 Install gulp globally
