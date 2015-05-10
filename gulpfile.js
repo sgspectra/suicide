@@ -20,10 +20,16 @@ gulp.task('clean', function(){
  */
 gulp.task('inject', function(){
     return gulp.src('./lib/index.html')
-        .pipe(inject(gulp.src(['./lib/js/script.js']), {
+        .pipe(inject(gulp.src(['./lib/js/*.js']), {
             starttag: '<!-- inject:js -->',
             transform: function (filePath, file) {
                 return '<script type="text/javascript">' + file.contents.toString('utf8') + '</script>';
+            }
+        }))
+        .pipe(inject(gulp.src(['./lib/css/styles.css']), {
+            starttag: '<!-- inject:css -->',
+            transform: function (filePath, file) {
+                return '<style>' + file.contents.toString('utf8') + '</style>';
             }
         }))
         .pipe(gulp.dest('./dist'));
