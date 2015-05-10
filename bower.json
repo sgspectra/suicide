@@ -1,0 +1,9 @@
+{
+  "name": "suicide-components",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Front-end components for suicide",
+  "dependencies": {
+    "todc-bootstrap": "~3.0.2"
+  }
+}

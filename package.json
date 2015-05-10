@@ -18,6 +18,7 @@
     "url": "git@github.com/sgspectra/suicide.git"
   },
   "devDependencies": {
+    "bower": "^1.4.1",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-inject": "^1.2.0",
