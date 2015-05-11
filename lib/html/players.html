@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th># Given</th>
+            <th># Taken</th>
+            <th>Net</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% _.each(players, function(player){ %>
+            <tr>
+                <td><%= player %></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>

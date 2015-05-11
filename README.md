@@ -34,6 +34,10 @@ Run all lint tasks
 
     gulp lint
     
+Run the test server, it will be accessible on [http://localhost:8080/](http://localhost:8080/)
+
+    gulp webpack-dev-server
+    
 Run all build tasks
 
     gulp

@@ -4,6 +4,29 @@ var gulp = require('gulp');
 var inject = require('gulp-inject');
 var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
+var webpack = require("webpack");
+var webpackConfig = require('./webpack.config.js');
+var webpackDevServer = require("webpack-dev-server");
+
+/**
+ * Creates a development server
+ */
+gulp.task("webpack-dev-server", function(){
+    // modify some webpack config options
+    var myConfig = Object.create(webpackConfig);
+    myConfig.devtool = "eval";
+    myConfig.debug = true;
+
+    // Start a webpack-dev-server
+    new webpackDevServer(webpack(myConfig), {
+        contentBase: __dirname + '/lib',
+        stats: {
+            colors: true
+        }
+    }).listen(8080, "localhost", function(err) {
+        console.log('error', err);
+    });
+});
 
 /**
  * Cleans dist
