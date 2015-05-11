@@ -1,3 +1,3 @@
-<% _.each(players, function(player){ %>
-    <button class="btn btn-default" type="button" data-dismiss="modal"><%= player %></button>
+<% _.each(players, function(player, index){ %>
+    <button class="btn btn-default drink-pick" type="button" data-playerindex="<%= index %>"><%= player %></button>
 <% }); %>
