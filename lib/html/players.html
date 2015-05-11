@@ -2,18 +2,26 @@
     <thead>
         <tr>
             <th>Player</th>
+            <th>Round 1</th>
+            <th>Round 2</th>
+            <th>Round 3</th>
+            <th>Round 4</th>
             <th># Given</th>
             <th># Taken</th>
             <th>Net</th>
         </tr>
     </thead>
     <tbody>
-        <% _.each(players, function(player){ %>
+        <% _.each(players, function(player, index){ %>
             <tr>
                 <td><%= player %></td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td class="c0p<%= index %>"></td>
+                <td class="c1p<%= index %>"></td>
+                <td class="c2p<%= index %>"></td>
+                <td class="c3p<%= index %>"></td>
+                <td class="p<%= index %>-given">0</td>
+                <td class="p<%= index %>-taken">0</td>
+                <td class="p<%= index %>-net">0</td>
             </tr>
         <% }); %>
     </tbody>
