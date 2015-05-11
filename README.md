@@ -12,6 +12,7 @@ Install gulp globally
 Install the other dependencies
 
     sudo npm install
+    gulp bower
 
 ## Building
 Clean the dist directory

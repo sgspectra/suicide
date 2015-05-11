@@ -1,20 +1,26 @@
 // Dependencies
+var bower = require('gulp-bower');
 var del = require('del');
 var gulp = require('gulp');
 var inject = require('gulp-inject');
 var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
-var webpack = require("webpack");
+var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
-var webpackDevServer = require("webpack-dev-server");
+var webpackDevServer = require('webpack-dev-server');
+
+gulp.task('bower', function() {
+    return bower()
+        .pipe(gulp.dest('lib/bower_components'));
+});
 
 /**
  * Creates a development server
  */
-gulp.task("webpack-dev-server", function(){
+gulp.task('webpack-dev-server', function(){
     // modify some webpack config options
     var myConfig = Object.create(webpackConfig);
-    myConfig.devtool = "eval";
+    myConfig.devtool = 'eval';
     myConfig.debug = true;
 
     // Start a webpack-dev-server
@@ -23,7 +29,7 @@ gulp.task("webpack-dev-server", function(){
         stats: {
             colors: true
         }
-    }).listen(8080, "localhost", function(err) {
+    }).listen(8080, 'localhost', function(err){
         console.log('error', err);
     });
 });
