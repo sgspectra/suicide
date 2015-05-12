@@ -1,3 +1,40 @@
-<% _.each(players, function(player, index){ %>
-    <button class="btn btn-default drink-pick" type="button" data-playerindex="<%= index %>"><%= player %></button>
-<% }); %>
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Give <%= count %> Drinks</h4>
+</div>
+<div class="modal-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th style="text-align: right;">Give</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% _.each(players, function(player, index){ %>
+                <tr>
+                    <td><%= player %></td>
+                    <td style="text-align: right;">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="drink-count">0</span> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <% for (var i = 0; i <= count; i++) { %>
+                                    <li style="text-align: left;"><a href="#" class="drink-pick"><%= i %></a></li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2" style="text-align: right">0</td>
+            </tr>
+        </tfoot>
+    </table>
+    <br/>
+
+    <button type="button" class="btn btn-primary btn-lg btn-block drink-assign" disabled="disabled">Give</button>
+</div>
