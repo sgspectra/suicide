@@ -20,7 +20,7 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <% for (var i = 0; i <= count; i++) { %>
-                                    <li style="text-align: left;"><a href="#" class="drink-pick"><%= i %></a></li>
+                                    <li style="text-align: left;"><a href="#" class="drink-pick" data-playerindex="<%= index %>"><%= i %></a></li>
                                 <% } %>
                             </ul>
                         </div>
