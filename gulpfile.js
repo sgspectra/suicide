@@ -8,7 +8,11 @@ var runSequence = require('run-sequence');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 var webpackDevServer = require('webpack-dev-server');
+var webpackGulp = require('gulp-webpack');
 
+/**
+ * Installs the front end dependencies using bower
+ */
 gulp.task('bower', function() {
     return bower()
         .pipe(gulp.dest('lib/bower_components'));
@@ -18,13 +22,13 @@ gulp.task('bower', function() {
  * Creates a development server
  */
 gulp.task('webpack-dev-server', function(){
-    // modify some webpack config options
-    var myConfig = Object.create(webpackConfig);
-    myConfig.devtool = 'eval';
-    myConfig.debug = true;
+    // Modify some webpack config options
+    var config = Object.create(webpackConfig);
+    config.devtool = 'eval';
+    config.debug = true;
 
     // Start a webpack-dev-server
-    new webpackDevServer(webpack(myConfig), {
+    new webpackDevServer(webpack(config), {
         contentBase: __dirname + '/lib',
         stats: {
             colors: true
@@ -32,6 +36,19 @@ gulp.task('webpack-dev-server', function(){
     }).listen(8080, 'localhost', function(err){
         console.log('error', err);
     });
+});
+
+/**
+ * Builds the final optimized bundle
+ */
+gulp.task('webpack', function(){
+    // Modify some webpack config options
+    var config = Object.create(webpackConfig);
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+
+    return gulp.src('./lib/js/suicide.js')
+        .pipe(webpackGulp(config))
+        .pipe(gulp.dest('dist/'));
 });
 
 /**
