@@ -13,7 +13,7 @@ var webpackGulp = require('gulp-webpack');
 /**
  * Installs the front end dependencies using bower
  */
-gulp.task('bower', function() {
+gulp.task('bower', function(){
     return bower()
         .pipe(gulp.dest('lib/bower_components'));
 });
@@ -171,6 +171,14 @@ gulp.task('lint:lib', function(){
 });
 
 /**
+ * Copies all the images from lib/img to dist/img
+ */
+gulp.task('copy', function(){
+    gulp.src('./lib/img/**/*.*')
+        .pipe(gulp.dest('./dist/img'));
+});
+
+/**
  * Task to run all lint subtasks
  */
 gulp.task('lint', ['lint:gulpfile', 'lint:lib']);
@@ -178,11 +186,11 @@ gulp.task('lint', ['lint:gulpfile', 'lint:lib']);
 /**
  * Task to be used during development. Starts up a dev server at http://localhost:8080/
  */
-gulp.task('dev', ['inject:dev', 'webpack-dev-server']);
+gulp.task('dev', ['copy', 'inject:dev', 'webpack-dev-server']);
 
 /**
  * Default gulp task
  */
-gulp.task('default', function() {
-    runSequence('clean', 'lint', 'compile');
+gulp.task('default', function(){
+    runSequence('bower', 'clean', 'lint', 'copy', 'compile');
 });
