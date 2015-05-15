@@ -60,6 +60,6 @@ module.exports = {
         filename : 'bundle.js',
         library : 'suicide',
         libraryTarget : 'var',
-        path: __dirname + '/lib'
+        path: __dirname + '/dist'
     }
 };

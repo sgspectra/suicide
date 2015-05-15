@@ -29,7 +29,7 @@ gulp.task('webpack-dev-server', function(){
 
     // Start a webpack-dev-server
     new webpackDevServer(webpack(config), {
-        contentBase: __dirname + '/lib',
+        contentBase: __dirname + '/dist',
         stats: {
             colors: true
         }
@@ -62,20 +62,28 @@ gulp.task('clean', function(){
 });
 
 /**
- * Injects the lib/js/script.js into lib/index.html and writes to dist/index.html
+ * Injects the lib/js/script.js into lib/index.html and writes to dist/index.html. Should be used for prod only.
  */
-gulp.task('inject', function(){
+gulp.task('inject:prod', ['webpack'], function(){
     return gulp.src('./lib/index.html')
-        .pipe(inject(gulp.src(['./lib/js/*.js']), {
+        .pipe(inject(gulp.src(['./dist/bundle.js']), {
             starttag: '<!-- inject:js -->',
-            transform: function (filePath, file) {
+            transform: function(filePath, file){
                 return '<script type="text/javascript">' + file.contents.toString('utf8') + '</script>';
             }
         }))
-        .pipe(inject(gulp.src(['./lib/css/styles.css']), {
-            starttag: '<!-- inject:css -->',
-            transform: function (filePath, file) {
-                return '<style>' + file.contents.toString('utf8') + '</style>';
+        .pipe(gulp.dest('./dist'));
+});
+
+/**
+ * Injects a reference to the bundle created by webpack-dev-server. Should be used for dev only.
+ */
+gulp.task('inject:dev', function(){
+    return gulp.src('./lib/index.html')
+        .pipe(inject(gulp.src(['./lib/js/suicide.js']), {
+            starttag: '<!-- inject:js -->',
+            transform: function(){
+                return '<script type="text/javascript" src="bundle.js"></script>';
             }
         }))
         .pipe(gulp.dest('./dist'));
@@ -84,7 +92,7 @@ gulp.task('inject', function(){
 /**
  * Compiles the final hangout.xml file to dist by creating file and injecting dist/index.html
  */
-gulp.task('compile', ['inject'], function(){
+gulp.task('compile', ['inject:prod'], function(){
     var builder = require('xmlbuilder');
     var fs = require('fs');
 
@@ -166,6 +174,11 @@ gulp.task('lint:lib', function(){
  * Task to run all lint subtasks
  */
 gulp.task('lint', ['lint:gulpfile', 'lint:lib']);
+
+/**
+ * Task to be used during development. Starts up a dev server at http://localhost:8080/
+ */
+gulp.task('dev', ['inject:dev', 'webpack-dev-server']);
 
 /**
  * Default gulp task

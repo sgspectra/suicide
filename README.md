@@ -19,10 +19,6 @@ Clean the dist directory
 
     gulp clean
     
-Compile all resources into dist/hangout.xml
-
-    gulp compile
-    
 Lint the gulpfile
 
     gulp lint:gulpfile
@@ -35,10 +31,10 @@ Run all lint tasks
 
     gulp lint
     
-Run the test server, it will be accessible on [http://localhost:8080/](http://localhost:8080/)
+Prepares the dev server, it will be accessible on [http://localhost:8080/](http://localhost:8080/)
 
-    gulp webpack-dev-server
+    gulp dev
     
-Run all build tasks
+Builds the production hangout.xml file
 
     gulp
