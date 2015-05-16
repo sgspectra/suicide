@@ -173,7 +173,11 @@ gulp.task('lint:lib', function(){
 
 gulp.task('jscs', function(){
     return gulp.src('./lib/js/*.js')
-        .pipe(jscs());
+        .pipe(jscs({
+            configPath: '.jscsrc',
+            fix: true
+        }))
+        .pipe(gulp.dest('./lib/js'));
 });
 
 /**
