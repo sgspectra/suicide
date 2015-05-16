@@ -31,6 +31,11 @@
   "requireSpaceAfterLineComment": true,
   "requireSpaceAfterObjectKeys": true,
   "requireSpaceBeforeBinaryOperators": true,
+  "requireSpaceBeforeKeywords": [
+    "else",
+    "while",
+    "catch"
+  ],
   "requireSpaceBetweenArguments": true,
   "disallowSpacesInAnonymousFunctionExpression": {
     "beforeOpeningRoundBrace": true,
