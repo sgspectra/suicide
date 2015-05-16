@@ -3,6 +3,7 @@ var bower = require('gulp-bower');
 var del = require('del');
 var gulp = require('gulp');
 var inject = require('gulp-inject');
+var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
@@ -168,6 +169,11 @@ gulp.task('lint:lib', function(){
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jshint.reporter('fail'));
+});
+
+gulp.task('jscs', function(){
+    return gulp.src('./lib/js/*.js')
+        .pipe(jscs());
 });
 
 /**

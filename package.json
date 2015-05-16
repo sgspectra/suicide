@@ -25,6 +25,7 @@
     "gulp": "^3.8.11",
     "gulp-bower": "0.0.10",
     "gulp-inject": "^1.2.0",
+    "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.10.0",
     "gulp-webpack": "^1.4.0",
     "html-loader": "^0.3.0",
