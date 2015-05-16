@@ -5,37 +5,37 @@ var bower = __dirname + '/lib/bower_components';
 module.exports = {
     context : __dirname + '/lib/',
     entry : {
-        app: ['./js/suicide.js']
+        app : ['./js/suicide.js']
     },
     module : {
         loaders : [
             {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                test : /\.css$/,
+                loader : 'style-loader!css-loader'
             },
             {
-                test: /\.png$/,
-                loader: 'url-loader?mimetype=image/png'
+                test : /\.png$/,
+                loader : 'url-loader?mimetype=image/png'
             },
             {
-                test: /\.gif/,
-                loader: 'url-loader?mimetype=image/gif'
+                test : /\.gif/,
+                loader : 'url-loader?mimetype=image/gif'
             },
             {
-                test: /\.woff$/,
-                loader: "url-loader?limit=10000&minetype=application/font-woff"
+                test : /\.woff$/,
+                loader : 'url-loader?limit=10000&minetype=application/font-woff'
             },
             {
-                test: /\.ttf$/,
-                loader: 'file-loader'
+                test : /\.ttf$/,
+                loader : 'file-loader'
             },
             {
-                test: /\.eot$/,
-                loader: 'file-loader'
+                test : /\.eot$/,
+                loader : 'file-loader'
             },
             {
-                test: /\.svg$/,
-                loader: 'file-loader'
+                test : /\.svg$/,
+                loader : 'file-loader'
             }
         ],
         noParse : [
@@ -60,6 +60,6 @@ module.exports = {
         filename : 'bundle.js',
         library : 'suicide',
         libraryTarget : 'var',
-        path: __dirname + '/dist'
+        path : __dirname + '/dist'
     }
 };

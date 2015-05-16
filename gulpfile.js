@@ -171,13 +171,28 @@ gulp.task('lint:lib', function(){
         .pipe(jshint.reporter('fail'));
 });
 
-gulp.task('jscs', function(){
+/**
+ * Runs style check on all js in lib/js
+ */
+gulp.task('jscs:lib', function(){
     return gulp.src('./lib/js/*.js')
         .pipe(jscs({
             configPath: '.jscsrc',
             fix: true
         }))
         .pipe(gulp.dest('./lib/js'));
+});
+
+/**
+ * Runs style check on config files
+ */
+gulp.task('jscs:config', function(){
+    return gulp.src(['./.gulpfile.js', './webpack.config.js'])
+        .pipe(jscs({
+            configPath: '.jscsrc',
+            fix: true
+        }))
+        .pipe(gulp.dest('./'));
 });
 
 /**
@@ -191,7 +206,7 @@ gulp.task('copy', function(){
 /**
  * Task to run all lint subtasks
  */
-gulp.task('lint', ['lint:gulpfile', 'lint:lib']);
+gulp.task('lint', ['lint:gulpfile', 'lint:lib', 'jscs:lib', 'jscs:config']);
 
 /**
  * Task to be used during development. Starts up a dev server at http://localhost:8080/
