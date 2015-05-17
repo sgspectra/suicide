@@ -30,9 +30,9 @@ gulp.task('webpack-dev-server', function(){
 
     // Start a webpack-dev-server
     new webpackDevServer(webpack(config), {
-        contentBase: __dirname + '/dist',
-        stats: {
-            colors: true
+        contentBase : __dirname + '/dist',
+        stats : {
+            colors : true
         }
     }).listen(8080, 'localhost', function(err){
         console.log('error', err);
@@ -68,8 +68,8 @@ gulp.task('clean', function(){
 gulp.task('inject:prod', ['webpack'], function(){
     return gulp.src('./lib/index.html')
         .pipe(inject(gulp.src(['./dist/bundle.js']), {
-            starttag: '<!-- inject:js -->',
-            transform: function(filePath, file){
+            starttag : '<!-- inject:js -->',
+            transform : function(filePath, file){
                 return '<script type="text/javascript">' + file.contents.toString('utf8') + '</script>';
             }
         }))
@@ -82,8 +82,8 @@ gulp.task('inject:prod', ['webpack'], function(){
 gulp.task('inject:dev', function(){
     return gulp.src('./lib/index.html')
         .pipe(inject(gulp.src(['./lib/js/suicide.js']), {
-            starttag: '<!-- inject:js -->',
-            transform: function(){
+            starttag : '<!-- inject:js -->',
+            transform : function(){
                 return '<script type="text/javascript" src="bundle.js"></script>';
             }
         }))
@@ -106,41 +106,41 @@ gulp.task('compile', ['inject:prod'], function(){
         // Create root XML node
         var root = builder.create('Module',
             {
-                version: '1.0',
-                encoding: 'UTF-8'
+                version : '1.0',
+                encoding : 'UTF-8'
             }
         );
 
         // Populate XML file with the contents of the script file
         root.ele({
-            'ModulePrefs': {
-                '@title': 'Suicide: The Drinking Game',
-                '#list': [
+            'ModulePrefs' : {
+                '@title' : 'Suicide: The Drinking Game',
+                '#list' : [
                     {
                         'Require' : {
-                            '@feature': 'rpc'
+                            '@feature' : 'rpc'
                         }
                     },
                     {
                         'Require' : {
-                            '@feature': 'views'
+                            '@feature' : 'views'
                         }
                     },
                     {
                         'Require' : {
-                            '@feature': 'locked-domain'
+                            '@feature' : 'locked-domain'
                         }
                     }
                 ]
             },
-            'Content': {
+            'Content' : {
                 '@type' : 'html',
                 '#cdata' : data
             }
         });
 
         // Convert the XML to a string
-        var xml = root.end({pretty: true});
+        var xml = root.end({pretty : true});
 
         // Write compiled file to dist
         fs.writeFile(__dirname + '/dist/hangout.xml', xml, function(err){
@@ -177,8 +177,8 @@ gulp.task('lint:lib', function(){
 gulp.task('jscs:lib', function(){
     return gulp.src('./lib/js/*.js')
         .pipe(jscs({
-            configPath: '.jscsrc',
-            fix: true
+            configPath : '.jscsrc',
+            fix : true
         }))
         .pipe(gulp.dest('./lib/js'));
 });
@@ -187,10 +187,10 @@ gulp.task('jscs:lib', function(){
  * Runs style check on config files
  */
 gulp.task('jscs:config', function(){
-    return gulp.src(['./.gulpfile.js', './webpack.config.js'])
+    return gulp.src(['./gulpfile.js', './webpack.config.js'])
         .pipe(jscs({
-            configPath: '.jscsrc',
-            fix: true
+            configPath : '.jscsrc',
+            fix : true
         }))
         .pipe(gulp.dest('./'));
 });
@@ -199,7 +199,7 @@ gulp.task('jscs:config', function(){
  * Copies all the images from lib/img to dist/img
  */
 gulp.task('copy', function(){
-    gulp.src('./lib/img/**/*.*')
+    return gulp.src('./lib/img/**/*.*')
         .pipe(gulp.dest('./dist/img'));
 });
 
