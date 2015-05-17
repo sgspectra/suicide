@@ -10,6 +10,7 @@ var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 var webpackDevServer = require('webpack-dev-server');
 var webpackGulp = require('gulp-webpack');
+var w3cjs = require('gulp-w3cjs');
 
 /**
  * Installs the front end dependencies using bower
@@ -204,9 +205,17 @@ gulp.task('copy', function(){
 });
 
 /**
+ * Validates HTML using W3C validation
+ */
+gulp.task('w3cjs', function(){
+    gulp.src('./lib/index.html')
+        .pipe(w3cjs());
+});
+
+/**
  * Task to run all lint subtasks
  */
-gulp.task('lint', ['lint:gulpfile', 'lint:lib', 'jscs:lib', 'jscs:config']);
+gulp.task('lint', ['lint:gulpfile', 'lint:lib', 'jscs:lib', 'jscs:config', 'w3cjs']);
 
 /**
  * Task to be used during development. Starts up a dev server at http://localhost:8080/
