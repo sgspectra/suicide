@@ -2,6 +2,9 @@
     <h4 class="modal-title" id="myModalLabel">Give <%= count %> Drinks</h4>
 </div>
 <div class="modal-body">
+    <button type="button" class="btn btn-info btn-sm btn-block drink-split">Split Equally</button>
+    <br>
+
     <table class="table">
         <thead>
             <tr>
@@ -31,11 +34,11 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2" style="text-align: right">0</td>
+                <td colspan="2" style="text-align: right" class="drink-pick-total">0</td>
             </tr>
         </tfoot>
     </table>
-    <br/>
+    <br>
 
     <button type="button" class="btn btn-primary btn-lg btn-block drink-assign" disabled="disabled">Give</button>
 </div>
