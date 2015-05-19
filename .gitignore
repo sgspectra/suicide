@@ -2,3 +2,4 @@
 *.log
 node_modules
 lib/bower_components
+lib/css/styles.css
