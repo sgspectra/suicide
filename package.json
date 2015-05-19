@@ -30,6 +30,7 @@
     "gulp-w3cjs": "^0.3.0",
     "gulp-webpack": "^1.4.0",
     "html-loader": "^0.3.0",
+    "less": "^2.5.0",
     "less-loader": "^2.2.0",
     "node-libs-browser": "^0.5.0",
     "run-sequence": "^1.1.0",
