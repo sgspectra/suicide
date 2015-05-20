@@ -8,7 +8,7 @@ i.card {
 
 .generate-cards(@n, @i: 0) when (@i < @n) {
   i.card-@{i} {
-    background: url('../img/cards/@{i}.png') left top/50px 73px no-repeat;
+    background: url('../img/cards/small/@{i}.png') left top/50px 73px no-repeat;
   }
   .generate-cards(@n, (@i + 1));
 }
