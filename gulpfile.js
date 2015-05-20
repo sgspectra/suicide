@@ -11,6 +11,7 @@ var webpackConfig = require('./webpack.config.js');
 var webpackDevServer = require('webpack-dev-server');
 var webpackGulp = require('gulp-webpack');
 var w3cjs = require('gulp-w3cjs');
+var scp = require('gulp-scp');
 
 /**
  * Installs the front end dependencies using bower
@@ -51,6 +52,19 @@ gulp.task('webpack', function(){
     return gulp.src('./lib/js/suicide.js')
         .pipe(webpackGulp(config))
         .pipe(gulp.dest('dist/'));
+});
+
+/**
+ * Puts XML file at ajstorch.com
+ */
+gulp.task('scp', function(){
+	gulp.src('./dist/hangout.xml')
+		.pipe(scp({
+			host: 'ajstorch.com',
+			user: 'andsto45',
+			port: 22,
+			path: '~/suicide-hangout'
+		}));
 });
 
 /**
