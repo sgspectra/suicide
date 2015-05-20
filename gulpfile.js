@@ -58,12 +58,12 @@ gulp.task('webpack', function(){
  * Puts XML file at ajstorch.com
  */
 gulp.task('scp', function(){
-	gulp.src('./dist/hangout.xml')
+    gulp.src('./dist/hangout.xml')
 		.pipe(scp({
-			host: 'ajstorch.com',
-			user: 'andsto45',
-			port: 22,
-			path: '~/ajstorch.com/suicide-hangout'
+    host : 'ajstorch.com',
+    user : 'andsto45',
+    port : 22,
+    path : '~/ajstorch.com/suicide-hangout'
 		}));
 });
 
