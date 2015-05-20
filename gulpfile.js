@@ -63,7 +63,7 @@ gulp.task('scp', function(){
 			host: 'ajstorch.com',
 			user: 'andsto45',
 			port: 22,
-			path: '~/suicide-hangout'
+			path: '~/ajstorch.com/suicide-hangout'
 		}));
 });
 
