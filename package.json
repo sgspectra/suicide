@@ -39,6 +39,6 @@
     "webpack": "^1.9.4",
     "webpack-dev-server": "^1.8.2",
     "xmlbuilder": "^2.6.2",
-	"gulp-scp": "^0.0.3"
+    "gulp-scp": "^0.0.3"
   }
 }

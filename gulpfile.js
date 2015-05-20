@@ -59,12 +59,12 @@ gulp.task('webpack', function(){
  */
 gulp.task('scp', function(){
     gulp.src('./dist/hangout.xml')
-		.pipe(scp({
-    		host : 'ajstorch.com',
+        .pipe(scp({
+            host : 'ajstorch.com',
     		user : 'andsto45',
     		port : 22,
     		path : '~/ajstorch.com/suicide-hangout'
-		}));
+        }));
 });
 
 /**
