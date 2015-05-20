@@ -24,6 +24,7 @@
     "file-loader": "^0.8.1",
     "gulp": "^3.8.11",
     "gulp-bower": "0.0.10",
+    "gulp-scp": "^0.0.3",
     "gulp-inject": "^1.2.0",
     "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.10.0",
@@ -38,7 +39,6 @@
     "url-loader": "^0.5.5",
     "webpack": "^1.9.4",
     "webpack-dev-server": "^1.8.2",
-    "xmlbuilder": "^2.6.2",
-    "gulp-scp": "^0.0.3"
+    "xmlbuilder": "^2.6.2"
   }
 }
