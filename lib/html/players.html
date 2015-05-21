@@ -14,14 +14,14 @@
     <tbody>
         <% _.each(players, function(player, index){ %>
             <tr>
-                <td><%= player %></td>
-                <td class="c0p<%= index %>"></td>
-                <td class="c1p<%= index %>"></td>
-                <td class="c2p<%= index %>"></td>
-                <td class="c3p<%= index %>"></td>
-                <td class="p<%= index %>-given text-success">0</td>
-                <td class="p<%= index %>-taken text-danger">0</td>
-                <td class="p<%= index %>-net text-primary">0</td>
+                <td><%= player.name %></td>
+                <td class="c0p<%= index %>"><i class="card card-<%= player.round1 %>"></i></td>
+                <td class="c1p<%= index %>"><i class="card card-<%= player.round2 %>"></i></td>
+                <td class="c2p<%= index %>"><i class="card card-<%= player.round3 %>"></i></td>
+                <td class="c3p<%= index %>"><i class="card card-<%= player.round4 %>"></i></td>
+                <td class="p<%= index %>-given text-success"><%= player.given %></td>
+                <td class="p<%= index %>-taken text-danger"><%= player.taken %></td>
+                <td class="p<%= index %>-net text-primary"><%= player.net %></td>
             </tr>
         <% }); %>
     </tbody>
