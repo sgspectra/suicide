@@ -211,14 +211,6 @@ gulp.task('jscs:config', function(){
 });
 
 /**
- * Copies all the images from lib/img to dist/img
- */
-gulp.task('copy', function(){
-    return gulp.src('./lib/img/**/*.*')
-        .pipe(gulp.dest('./dist/img'));
-});
-
-/**
  * Validates HTML using W3C validation
  */
 gulp.task('w3cjs', function(){
@@ -234,11 +226,11 @@ gulp.task('lint', ['lint:gulpfile', 'lint:lib', 'jscs:lib', 'jscs:config', 'w3cj
 /**
  * Task to be used during development. Starts up a dev server at http://localhost:8080/
  */
-gulp.task('dev', ['copy', 'inject:dev', 'webpack-dev-server']);
+gulp.task('dev', ['inject:dev', 'webpack-dev-server']);
 
 /**
  * Default gulp task
  */
 gulp.task('default', function(){
-    runSequence('bower', 'clean', 'lint', 'copy', 'compile');
+    runSequence('bower', 'clean', 'lint', 'compile');
 });
