@@ -58,7 +58,7 @@ gulp.task('webpack', function(){
  * Puts XML file at ajstorch.com
  */
 gulp.task('scp', function(){
-    gulp.src('./dist/hangout.xml')
+    return gulp.src('./dist/hangout.xml')
         .pipe(scp({
             host : 'ajstorch.com',
             user : 'andsto45',

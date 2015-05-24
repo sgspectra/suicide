@@ -1,0 +1,6 @@
+<div class="list-group">
+    <p class="list-group-item"><strong>Waiting to Play</strong></p>
+    <% _.each(participants, function(participant){ %>
+        <p class="list-group-item"><%= participant.person.displayName %></p>
+    <% }); %>
+</div>
