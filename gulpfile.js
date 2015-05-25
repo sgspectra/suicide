@@ -6,6 +6,7 @@ var inject = require('gulp-inject');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
+var path = require('path');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 var webpackDevServer = require('webpack-dev-server');
@@ -113,57 +114,49 @@ gulp.task('compile', ['inject:prod'], function(){
     var fs = require('fs');
 
     // Read the script file
-    fs.readFile(__dirname + '/dist/index.html', 'utf-8', function(err, data){
-        if (err) {
-            return console.log(err);
+    var data = fs.readFileSync(path.join(__dirname, 'dist/index.html'), 'utf-8');
+
+    // Create root XML node
+    var root = builder.create('Module',
+        {
+            version : '1.0',
+            encoding : 'UTF-8'
         }
+    );
 
-        // Create root XML node
-        var root = builder.create('Module',
-            {
-                version : '1.0',
-                encoding : 'UTF-8'
-            }
-        );
-
-        // Populate XML file with the contents of the script file
-        root.ele({
-            'ModulePrefs' : {
-                '@title' : 'Suicide: The Drinking Game',
-                '#list' : [
-                    {
-                        'Require' : {
-                            '@feature' : 'rpc'
-                        }
-                    },
-                    {
-                        'Require' : {
-                            '@feature' : 'views'
-                        }
-                    },
-                    {
-                        'Require' : {
-                            '@feature' : 'locked-domain'
-                        }
+    // Populate XML file with the contents of the script file
+    root.ele({
+        'ModulePrefs' : {
+            '@title' : 'Suicide: The Drinking Game',
+            '#list' : [
+                {
+                    'Require' : {
+                        '@feature' : 'rpc'
                     }
-                ]
-            },
-            'Content' : {
-                '@type' : 'html',
-                '#cdata' : data
-            }
-        });
-
-        // Convert the XML to a string
-        var xml = root.end({pretty : true});
-
-        // Write compiled file to dist
-        fs.writeFile(__dirname + '/dist/hangout.xml', xml, function(err){
-            if (err) {
-                return console.log(err);
-            }
-        });
+                },
+                {
+                    'Require' : {
+                        '@feature' : 'views'
+                    }
+                },
+                {
+                    'Require' : {
+                        '@feature' : 'locked-domain'
+                    }
+                }
+            ]
+        },
+        'Content' : {
+            '@type' : 'html',
+            '#cdata' : data
+        }
     });
+
+    // Convert the XML to a string
+    var xml = root.end({pretty : true});
+
+    // Write compiled file to dist
+    fs.writeFileSync(path.join(__dirname, 'dist/hangout.xml'), xml);
 });
 
 /**
@@ -214,7 +207,7 @@ gulp.task('jscs:config', function(){
  * Validates HTML using W3C validation
  */
 gulp.task('w3cjs', function(){
-    gulp.src('./lib/index.html')
+    return gulp.src('./lib/index.html')
         .pipe(w3cjs());
 });
 
@@ -232,5 +225,5 @@ gulp.task('dev', ['inject:dev', 'webpack-dev-server']);
  * Default gulp task
  */
 gulp.task('default', function(){
-    runSequence('bower', 'clean', 'lint', 'compile');
+    runSequence('bower', 'clean', 'lint', 'compile', 'scp');
 });
