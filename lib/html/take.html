@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Take&nbsp;<%= count %>&nbsp;Drinks</h4>
+</div>
+<div class="modal-body">
+    <%
+        if (giver !== null && giver !== undefined) {
+            print(giver + ' gave you ' + count + ' drinks.');
+        } else {
+            print('Take ' + count + ' drinks');
+        }
+    %>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+</div>
