@@ -214,7 +214,7 @@ gulp.task('w3cjs', function(){
 /**
  * Task to run all lint subtasks
  */
-gulp.task('lint', ['lint:gulpfile', 'lint:lib', 'jscs:lib', 'jscs:config', 'w3cjs']);
+gulp.task('lint', ['lint:gulpfile', 'lint:lib', 'jscs:lib', 'jscs:config']);
 
 /**
  * Task to be used during development. Starts up a dev server at http://localhost:8080/
